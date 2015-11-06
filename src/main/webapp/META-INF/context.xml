@@ -1,0 +1,9 @@
+<!--default location META-INF/context.xml-->
+<!--used for embedded tomcat server for jndi database connection and pooling-->
+
+<Context>
+    <Resource name="jdbc/spring" auth="Container" type="javax.sql.DataSource"
+              maxActive="100" maxIdle="30" maxWait="10000"
+              username="root" password="qwertz" driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://localhost:3306/spring"/>
+</Context>
