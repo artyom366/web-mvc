@@ -38,6 +38,7 @@
         <param-value>
             WEB-INF/dao-config.xml
             WEB-INF/service-config.xml
+            WEB-INF/test-config.xml
         </param-value>
     </context-param>
 </web-app>
