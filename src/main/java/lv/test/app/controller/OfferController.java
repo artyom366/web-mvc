@@ -2,7 +2,9 @@ package lv.test.app.controller;
 
 import lv.test.app.dao.Offer;
 import lv.test.app.service.OfferService;
-import lv.test.app.test.Test;
+import lv.test.app.util.IUtil;
+import lv.test.app.util.RRT;
+import lv.test.app.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,11 +25,17 @@ public class OfferController {
     @Autowired
     private OfferService offerService;
 
+    @Autowired
+    private RRT rrt;
 
+    @Autowired
+    private IUtil util;
 
     @RequestMapping(value = "/offers")
     public String showOffers(Model model) {
 
+        rrt.test();
+        util.doSmth(5);
 
         List<Offer> offers = offerService.getCurrent();
 

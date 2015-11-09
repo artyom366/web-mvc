@@ -19,8 +19,6 @@ public class Logger {
     @Pointcut("execution(* lv.test.app.controller.OfferController.showOffers(..))")
     public void log() {}
 
-
-
     @Around("log()")
     public Object logShowOffers(ProceedingJoinPoint joinPoint) throws Throwable {
 

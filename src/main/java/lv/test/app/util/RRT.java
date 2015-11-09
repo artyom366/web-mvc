@@ -1,4 +1,4 @@
-package lv.test.app.test;
+package lv.test.app.util;
 
 import org.springframework.stereotype.Component;
 
@@ -7,6 +7,11 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public interface ITest {
-    void run();
+public class RRT {
+
+
+    public void test() {
+
+        int i = 5;
+    }
 }
