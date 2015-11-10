@@ -8,11 +8,17 @@
 		http://www.springframework.org/schema/beans/spring-beans.xsd">
 
         <security:authentication-manager>
+            <!--hard coded users-->
             <security:authentication-provider>
                 <security:user-service>
                     <security:user name="art" authorities="admin" password="letmein"></security:user>
                     <security:user name="art1" authorities="admin" password="letmein1"></security:user>
                 </security:user-service>
+            </security:authentication-provider>
+
+            <!--data base user auth-->
+            <security:authentication-provider>
+                <security:jdbc-user-service data-source-ref="dataSource"></security:jdbc-user-service><!--JNDI data source-->
             </security:authentication-provider>
         </security:authentication-manager>
 
@@ -23,6 +29,9 @@
             <security:intercept-url pattern="/login" access="permitAll"></security:intercept-url>
             <security:intercept-url pattern="/" access="permitAll"></security:intercept-url>
             <security:intercept-url pattern="/offers" access="permitAll"></security:intercept-url>
+            <security:intercept-url pattern="/newacc" access="permitAll"></security:intercept-url>
+            <security:intercept-url pattern="/createaccount" access="permitAll"></security:intercept-url>
+            <security:intercept-url pattern="/accountcreated" access="permitAll"></security:intercept-url>
 
             <security:intercept-url pattern="/stat/**" access="permitAll"></security:intercept-url> <!--permit static resources-->
 
