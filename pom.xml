@@ -150,6 +150,13 @@
             <artifactId>commons-validator</artifactId>
             <version>1.4.1</version>
         </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope> <!--tom cat is using it own javax library, scope: provided for successful compilation-->
+            <version>2.5</version>
+        </dependency>
+
 
     </dependencies>
 
