@@ -2,6 +2,7 @@ package lv.test.app.controller;
 
 import lv.test.app.dao.Offer;
 import lv.test.app.service.OfferService;
+import lv.test.app.util.IMachine;
 import lv.test.app.util.IUtil;
 import lv.test.app.util.RRT;
 import lv.test.app.util.Util;
@@ -35,6 +36,8 @@ public class OfferController {
     public String showOffers(Model model) {
 
         rrt.test();
+        ((IMachine)rrt).start();
+
         util.doSmth(5);
 
         List<Offer> offers = offerService.getCurrent();

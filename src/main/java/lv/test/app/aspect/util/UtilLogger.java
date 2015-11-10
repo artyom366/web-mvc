@@ -1,5 +1,6 @@
 package lv.test.app.aspect.util;
 
+import lv.test.app.util.IMachine;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -15,6 +16,14 @@ import javax.persistence.JoinTable;
 @Aspect
 public class UtilLogger {
 
+    //making RRT class implement IMachine interface
+    @DeclareParents(value = "lv.test.app.util.RRT", defaultImpl = lv.test.app.util.Machine.class)
+    private IMachine iMachine;
+
+    @Pointcut("this(lv.test.app.util.IMachine)")
+    public void machineStarting() {
+    }
+
     @Pointcut("execution(* lv.test.app.util.RRT.test(..))")
     public void log() {
     }
@@ -27,6 +36,11 @@ public class UtilLogger {
     public void logUtilThis() {
     }
 
+    @Around("machineStarting()")
+    public void logMachineStarting(ProceedingJoinPoint joinPoint) {
+        System.out.println("logged machine start");
+    }
+
     @Around("log()")
     public Object logGetCurrent(ProceedingJoinPoint joinPoint) throws Throwable {
 
@@ -35,10 +49,10 @@ public class UtilLogger {
         return joinPoint.proceed();
     }
 
-    @Around("log()")
-    public Object logUt(ProceedingJoinPoint joinPoint) throws Throwable {
+    @Around("logUtil() && args(i)")
+    public Object logUt(ProceedingJoinPoint joinPoint, int i) throws Throwable {
 
-        System.out.println("util execution");
+        System.out.println("util execution " + i);
 
         return joinPoint.proceed();
     }

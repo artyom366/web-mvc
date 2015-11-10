@@ -21,6 +21,7 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <!--TomCat JNDI-->
     <description>Spring Database</description>
     <resource-ref>
         <description>DB Connection</description>
