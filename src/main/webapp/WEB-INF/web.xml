@@ -10,13 +10,24 @@
         <welcome-file>default.jsp</welcome-file>
     </welcome-file-list>
 
+    <!--jaxax.servlet Filter-->
+    <!--<filter>-->
+        <!--<display-name>TestFilter</display-name>-->
+        <!--<filter-name>TestFilter</filter-name>-->
+        <!--<filter-class>lv.test.app.filter.TestFilter</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>TestFilter</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
+
     <filter>
-        <display-name>TestFilter</display-name>
-        <filter-name>TestFilter</filter-name>
-        <filter-class>lv.test.app.filter.TestFilter</filter-class>
+        <display-name>springSecurityFilterChain</display-name>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>TestFilter</filter-name>
+        <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
@@ -51,6 +62,7 @@
             WEB-INF/dao-config.xml
             WEB-INF/service-config.xml
             WEB-INF/util-config.xml
+            WEB-INF/security-config.xml
         </param-value>
     </context-param>
 

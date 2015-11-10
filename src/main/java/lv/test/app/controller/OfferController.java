@@ -36,7 +36,7 @@ public class OfferController {
     public String showOffers(Model model) {
 
         rrt.test();
-        ((IMachine)rrt).start();
+        ((IMachine) rrt).start();
 
         util.doSmth(5);
 
@@ -67,7 +67,7 @@ public class OfferController {
 
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String test(Model model, @RequestParam("id")String id) {
+    public String test(Model model, @RequestParam("id") String id) {
         System.out.println("ID is:" + id);
         return "home";
     }

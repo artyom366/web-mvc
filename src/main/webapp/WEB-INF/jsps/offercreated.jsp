@@ -13,6 +13,6 @@
     <link href="${pageContext.request.contextPath}/stat/css/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-Offer created:  <a href="${pageContext.request.contextPath}/offers">clicl here to view current offers</a>
+Offer created:  <a href="${pageContext.request.contextPath}/offers">click here to view current offers</a>
 </body>
 </html>
