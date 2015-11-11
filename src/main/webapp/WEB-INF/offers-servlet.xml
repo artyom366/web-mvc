@@ -26,4 +26,8 @@
         <property name="prefix" value="/WEB-INF/jsps/"></property>
         <property name="suffix" value=".jsp"></property>
     </bean>
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages.messages_en"></property>
+    </bean>
 </beans>

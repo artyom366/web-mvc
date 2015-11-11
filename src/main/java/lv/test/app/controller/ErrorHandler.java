@@ -19,6 +19,8 @@ public class ErrorHandler {
     @ExceptionHandler(DataAccessException.class)
     public ModelAndView handleDataBaseErrors(DataAccessException e) {
 
+        e.printStackTrace();
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("error");
         modelAndView.addObject("error", e.getLocalizedMessage());
@@ -28,6 +30,9 @@ public class ErrorHandler {
 
     @ExceptionHandler(Exception.class)
     public String handleAllErrors(Exception e) {
+
+        e.printStackTrace();
+
         return "error";
     }
 }

@@ -1,12 +1,28 @@
 package lv.test.app.dao;
 
+import lv.test.app.validator.ValidEmail;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 /**
  * Created by artyom on 15.10.11.
  */
 public class User {
 
+    @NotBlank
+    @Size(min = 8, max = 15)
+    @Pattern(regexp = "^\\w{8,}$")
     private String userName;
+
+    @NotBlank
+    @Pattern(regexp = "^\\S+$")
+    @Size(min = 8, max = 15)
     private String password;
+
+    @Email
     private String email;
     private boolean enabled;
     private String authority;
