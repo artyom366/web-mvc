@@ -16,7 +16,7 @@
         <img alt="en" title="English">
     </a>
 
-    <a href="?lang=lv">
+    <a href="?lang=lv_LV">
         <img alt="lv" title="Latvian">
     </a>
 </div>

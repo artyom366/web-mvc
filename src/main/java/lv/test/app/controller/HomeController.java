@@ -16,6 +16,7 @@ public class HomeController {
     public String home(Locale locale) {
 
         System.out.println(locale);
+        System.out.println(Locale.forLanguageTag("LV-lv"));
         return "home";
     }
 }
