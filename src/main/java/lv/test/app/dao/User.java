@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
  */
 public class User {
 
-    @NotBlank
+    @NotBlank()
     @Size(min = 8, max = 15)
     @Pattern(regexp = "^\\w{8,}$")
     private String userName;

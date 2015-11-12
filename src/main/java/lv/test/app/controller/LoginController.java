@@ -47,7 +47,7 @@ public class LoginController {
 
         } else if (userService.exists(user.getUserName())) {
 
-            result.rejectValue("userName", "DuplicateKey.user.userName", "This user name is taken!");
+            result.rejectValue("userName", "DuplicateKey.user.userName");
             return "newacc";
         }
 
