@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
@@ -7,7 +8,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Insert title here</title>
+    <title>Home</title>
 </head>
 <body>
 
@@ -22,7 +23,12 @@
 </div>
 
 <br/>
-Hi there!
+<h2>
+    homepage.welcome : <spring:message code="homepage.welcome" text="default text" />
+</h2>
+<h2>
+    Current Locale : ${pageContext.response.locale}
+</h2>
 
 
 <p>
