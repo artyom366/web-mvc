@@ -23,10 +23,13 @@
         </security:authentication-manager>
 
         <security:http use-expressions="true">
+            <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"></security:intercept-url> <!--roles should be using the pattern "ROLE_prefix"-->
+
             <security:intercept-url pattern="/createoffer" access="isAuthenticated()"></security:intercept-url>
             <security:intercept-url pattern="/docreate" access="isAuthenticated()"></security:intercept-url>
             <security:intercept-url pattern="/offercreated" access="isAuthenticated()"></security:intercept-url>
             <security:intercept-url pattern="/login" access="permitAll"></security:intercept-url>
+            <security:intercept-url pattern="/loggedout" access="permitAll"></security:intercept-url>
             <security:intercept-url pattern="/" access="permitAll"></security:intercept-url>
             <security:intercept-url pattern="/offers" access="permitAll"></security:intercept-url>
             <security:intercept-url pattern="/newacc" access="permitAll"></security:intercept-url>
@@ -38,5 +41,12 @@
             <security:intercept-url pattern="/**" access="denyAll"></security:intercept-url><!--block all url addresses-->
 
             <security:form-login login-page="/login" authentication-failure-url="/login?error=true"></security:form-login><!--new login page-->
+
+            <security:logout logout-success-url="/loggedout"
+
+                             logout-url="/logout"
+                             delete-cookies="JSESSIONID"></security:logout>
+            <!--logout-url="/logout" is the default spring security logout mechanism-->
+            <!--logout-success-url="/loggedout" redirect to /loggegout after successful logout-->
         </security:http>
 </beans>

@@ -28,6 +28,11 @@ public class LoginController {
         return "login";
     }
 
+    @RequestMapping("/loggedout")
+    public String showLogoff() {
+        return "loggedout";
+    }
+
     @RequestMapping("/newacc")
     public String showAccountForm(Model model) {
 
@@ -58,6 +63,7 @@ public class LoginController {
 
         return "accountcreated";
     }
+
 
 
 }

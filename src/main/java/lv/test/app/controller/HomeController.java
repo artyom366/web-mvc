@@ -27,4 +27,12 @@ public class HomeController {
         System.out.println(locale);
         return "home";
     }
+
+    @RequestMapping(value = "/admin")
+    public String admin(Locale locale) {
+
+
+        System.out.println(locale);
+        return "admin";
+    }
 }
