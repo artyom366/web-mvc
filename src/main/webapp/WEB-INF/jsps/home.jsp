@@ -44,6 +44,8 @@
 </sec:authorize>
 
 <sec:authorize access="isAuthenticated()">
+    <!--when logging of with spring security using /logout value-->
+    <!--the method should be POST when tokens enabled-->
     <c:url var="logoutUrl" value="/logout"/>
     <form action="${logoutUrl}" method="post">
         <input type="submit" value="Log out" />

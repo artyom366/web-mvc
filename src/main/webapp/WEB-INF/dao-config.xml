@@ -2,10 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
-
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
        <context:annotation-config></context:annotation-config>
        <context:component-scan base-package="lv.test.app.dao">
@@ -14,4 +13,14 @@
        <jee:jndi-lookup jndi-name="jdbc/spring" id="dataSource"
                         expected-type="javax.sql.DataSource">
        </jee:jndi-lookup>
+
+       <!--database transactions-->
+       <bean id="transactionManager"
+             class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+             <property name="dataSource" ref="dataSource"></property>
+       </bean>
+       <!--inject transaction manager into tx-->
+       <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+
+
 </beans>

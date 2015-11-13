@@ -64,7 +64,7 @@ public class LoginController {
         }
 
         user.setEnabled(true);
-        user.setAuthority("user");
+        user.setAuthority("ROLE_USER");
 
         userService.create(user);
 
