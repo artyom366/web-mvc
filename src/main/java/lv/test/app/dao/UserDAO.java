@@ -18,8 +18,8 @@ public class UserDAO {
 
 	private NamedParameterJdbcTemplate jdbc;
 
-//	@Autowired
-//	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	public UserDAO() {
 		System.out.println("--------------------------------------------------------------------------------------------Loaded DAO");
@@ -36,8 +36,8 @@ public class UserDAO {
 		//BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(user);
 		MapSqlParameterSource params = new MapSqlParameterSource();
 		params.addValue("username", user.getUserName());
-		//params.addValue("password", passwordEncoder.encode(user.getPassword()));
-		params.addValue("password", user.getPassword());
+		params.addValue("password", passwordEncoder.encode(user.getPassword()));
+		//params.addValue("password", user.getPassword());
 		params.addValue("email", user.getEmail());
 		params.addValue("enabled", user.isEnabled());
 		params.addValue("authority", user.getAuthority());

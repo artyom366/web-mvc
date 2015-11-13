@@ -9,22 +9,22 @@
 
         <security:authentication-manager>
             <!--hard coded users-->
-            <security:authentication-provider>
-                <security:user-service>
-                    <security:user name="art" authorities="admin" password="letmein"></security:user>
-                    <security:user name="art1" authorities="admin" password="letmein1"></security:user>
-                </security:user-service>
-
-                <!--Inject password encoder into auth provider-->
-                <!--<security:password-encoder hash="bcrypt" ref="passwordEncoder"></security:password-encoder>-->
-            </security:authentication-provider>
+            <!--<security:authentication-provider>-->
+                <!--<security:user-service>-->
+                    <!--<security:user name="art" authorities="admin" password="letmein"></security:user>-->
+                    <!--<security:user name="art1" authorities="admin" password="letmein1"></security:user>-->
+                <!--</security:user-service>-->
+            <!--</security:authentication-provider>-->
 
             <!--data base user auth-->
             <security:authentication-provider>
-                <!--custom queries user BINARY keyword to enforce case sensitivity in db queries-->
+                <!--custom queries use BINARY keyword to enforce case sensitivity in db queries-->
                 <security:jdbc-user-service id="jdbcUserService" data-source-ref="dataSource"
                                             authorities-by-username-query="SELECT * FROM authorities WHERE BINARY username = ?"
                                             users-by-username-query="SELECT * FROM users WHERE BINARY username = ?"></security:jdbc-user-service><!--JNDI data source-->
+
+                <!--Inject password encoder into auth provider-->
+                <security:password-encoder hash="bcrypt" ref="passwordEncoder"></security:password-encoder>
             </security:authentication-provider>
         </security:authentication-manager>
 
@@ -66,7 +66,7 @@
     <security:global-method-security secured-annotations="enabled" /><!--security annotation on methods, restricting access-->
 
     <!--Password ebcoder-->
-    <!--<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>-->
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 
 
 </beans>
