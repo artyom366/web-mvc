@@ -18,13 +18,16 @@
 
             <!--data base user auth-->
             <security:authentication-provider>
-                <security:jdbc-user-service data-source-ref="dataSource"></security:jdbc-user-service><!--JNDI data source-->
+                <!--custom queries user BINARY keyword to enforce case sensitivity in db queries-->
+                <security:jdbc-user-service data-source-ref="dataSource"
+                                            authorities-by-username-query="SELECT * FROM authorities WHERE BINARY username = ?"
+                                            users-by-username-query="SELECT * FROM users WHERE BINARY username = ?"></security:jdbc-user-service><!--JNDI data source-->
             </security:authentication-provider>
         </security:authentication-manager>
 
         <security:http use-expressions="true">
+            <security:intercept-url pattern="/api/**" access="permitAll"></security:intercept-url>
             <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"></security:intercept-url> <!--roles should be using the pattern "ROLE_prefix"-->
-
             <security:intercept-url pattern="/createoffer" access="isAuthenticated()"></security:intercept-url>
             <security:intercept-url pattern="/docreate" access="isAuthenticated()"></security:intercept-url>
             <security:intercept-url pattern="/offercreated" access="isAuthenticated()"></security:intercept-url>
@@ -35,6 +38,7 @@
             <security:intercept-url pattern="/newacc" access="permitAll"></security:intercept-url>
             <security:intercept-url pattern="/createaccount" access="permitAll"></security:intercept-url>
             <security:intercept-url pattern="/accountcreated" access="permitAll"></security:intercept-url>
+            <security:intercept-url pattern="/denied" access="permitAll"></security:intercept-url>
 
             <security:intercept-url pattern="/stat/**" access="permitAll"></security:intercept-url> <!--permit static resources-->
 
@@ -48,5 +52,14 @@
                              delete-cookies="JSESSIONID"></security:logout>
             <!--logout-url="/logout" is the default spring security logout mechanism-->
             <!--logout-success-url="/loggedout" redirect to /loggegout after successful logout-->
+
+            <security:access-denied-handler error-page="/denied"></security:access-denied-handler>
+
+
         </security:http>
+
+    <security:global-method-security secured-annotations="enabled" /><!--security annotation on methods, restricting access-->
+
+
+
 </beans>

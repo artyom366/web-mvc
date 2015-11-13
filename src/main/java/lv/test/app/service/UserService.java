@@ -5,6 +5,7 @@ import lv.test.app.dao.OffersDAO;
 import lv.test.app.dao.User;
 import lv.test.app.dao.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,5 +28,11 @@ public class UserService {
     public boolean exists(String userName) {
 
         return userDAO.exists(userName);
+    }
+
+    @Secured("ROLE_ADMIN")
+    public List<User> getAllUsers() {
+
+        return userDAO.getAllUsers();
     }
 }

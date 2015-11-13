@@ -1,6 +1,7 @@
 package lv.test.app.controller;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -27,6 +28,20 @@ public class ErrorHandler {
 
         return modelAndView;
     }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ModelAndView handleDataBaseErrors(AccessDeniedException e) {
+
+        e.printStackTrace();
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("denied");
+        modelAndView.addObject("error", e.getLocalizedMessage());
+
+        return modelAndView;
+    }
+
+
 
     @ExceptionHandler(Exception.class)
     public String handleAllErrors(Exception e) {

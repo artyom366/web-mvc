@@ -1,6 +1,7 @@
 package lv.test.app.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.*;
 import org.springframework.stereotype.Component;
@@ -43,5 +44,8 @@ public class UserDAO {
 	}
 
 
+	public List<User> getAllUsers() {
 
+		return jdbc.query("select * from users as u, authorities as a where u.username = a.username", BeanPropertyRowMapper.newInstance(User.class));
+	}
 }

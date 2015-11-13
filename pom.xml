@@ -123,6 +123,11 @@
             <artifactId>spring-security-config</artifactId>
             <version>4.0.3.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>4.0.3.RELEASE</version>
+        </dependency>
 
         <!--<dependency>-->
             <!--<groupId>org.eclipse.jetty</groupId>-->
@@ -134,6 +139,8 @@
             <artifactId>jetty-jndi</artifactId>
             <version>9.3.5.v20151012</version>
         </dependency-->
+
+        <!--AspectJ-->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
@@ -144,11 +151,15 @@
             <artifactId>aspectjweaver</artifactId>
             <version>1.8.7</version>
         </dependency>
+
+        <!--JSTL-->
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+
+        <!--DataBase and Bean validation-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -174,11 +185,25 @@
             <artifactId>commons-validator</artifactId>
             <version>1.4.1</version>
         </dependency>
+
+        <!--Servlet-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <scope>provided</scope> <!--tom cat is using it own javax library, scope: provided for successful compilation-->
             <version>2.5</version>
+        </dependency>
+
+        <!--Jackson for REST bean conversion-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.6.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.6.3</version>
         </dependency>
 
 

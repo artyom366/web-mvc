@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by artyom on 15.10.11.
@@ -31,6 +33,11 @@ public class LoginController {
     @RequestMapping("/loggedout")
     public String showLogoff() {
         return "loggedout";
+    }
+
+    @RequestMapping("/denied")
+    public String showDenied() {
+        return "denied";
     }
 
     @RequestMapping("/newacc")
@@ -62,6 +69,16 @@ public class LoginController {
         userService.create(user);
 
         return "accountcreated";
+    }
+
+    @RequestMapping(value = "/admin")
+    public String admin(Locale locale, Model model) {
+
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+
+        System.out.println(locale);
+        return "admin";
     }
 
 
