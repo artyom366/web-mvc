@@ -1,5 +1,6 @@
 package lv.test.app.controller;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -16,6 +17,8 @@ import java.util.Locale;
 @Controller
 public class HomeController {
 
+    private static Logger logger = Logger.getLogger(HomeController.class);
+
     @Autowired
     private WebApplicationContext webApplicationContext;
 
@@ -25,6 +28,7 @@ public class HomeController {
         ReloadableResourceBundleMessageSource resourceBundleMessageSource = (ReloadableResourceBundleMessageSource) webApplicationContext.getBean("messageSource");
 
         System.out.println(locale);
+        logger.info("Showing home page");
         return "home";
     }
 

@@ -47,3 +47,30 @@ table.offers {
     font-size: medium;
     color: red;
 }
+
+div.footer {
+    font-size: small;
+    color: grey;
+}
+
+div.content {
+    position: relative;
+    padding: 40px;
+}
+
+div.header {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 150px;
+    background-color: antiquewhite;
+}
+
+div.login {
+    position: absolute;
+}
+
+a.title {
+    color: aquamarine;
+    font-size: 45px;
+}

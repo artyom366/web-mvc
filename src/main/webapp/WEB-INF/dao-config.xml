@@ -10,17 +10,34 @@
        <context:component-scan base-package="lv.test.app.dao">
        </context:component-scan>
 
-       <jee:jndi-lookup jndi-name="jdbc/spring" id="dataSource"
-                        expected-type="javax.sql.DataSource">
-       </jee:jndi-lookup>
+       <!--Nested beans tag for profiling-->
+       <beans profile="production">
+              <jee:jndi-lookup jndi-name="jdbc/spring" id="dataSource"
+                               expected-type="javax.sql.DataSource">
+              </jee:jndi-lookup>
 
-       <!--database transactions-->
-       <bean id="transactionManager"
-             class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-             <property name="dataSource" ref="dataSource"></property>
-       </bean>
-       <!--inject transaction manager into tx-->
-       <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+              <!--database transactions-->
+              <bean id="transactionManager"
+                    class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+                     <property name="dataSource" ref="dataSource"></property>
+              </bean>
+              <!--inject transaction manager into tx-->
+              <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+       </beans>
 
+    <beans profile="dev">
+        <!--<context:property-placeholder-->
+                <!--location="" />-->
+
+        <bean id="testDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+              destroy-method="close">
+
+            <property name="driverClassName" value="${jdbc.driver}"></property>
+            <property name="url" value="${jdbc.url}"></property>
+            <property name="password" value="${jdbc.password}"></property>
+            <property name="username" value="${jdbc.username}"></property>
+        </bean>
+
+    </beans>
 
 </beans>

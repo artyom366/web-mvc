@@ -37,8 +37,9 @@ public class UtilLogger {
     }
 
     @Around("machineStarting()")
-    public void logMachineStarting(ProceedingJoinPoint joinPoint) {
+    public Object logMachineStarting(ProceedingJoinPoint joinPoint) throws Throwable {
         System.out.println("logged machine start");
+        return joinPoint.proceed();
     }
 
     @Around("log()")

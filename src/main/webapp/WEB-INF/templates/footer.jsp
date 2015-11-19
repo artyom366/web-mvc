@@ -1,1 +1,2 @@
-<p>Footer goes here</p>
+<hr>
+Art Reb 2015
