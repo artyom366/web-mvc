@@ -20,8 +20,8 @@
             <security:authentication-provider>
                 <!--custom queries use BINARY keyword to enforce case sensitivity in db queries-->
                 <security:jdbc-user-service id="jdbcUserService" data-source-ref="dataSource"
-                                            authorities-by-username-query="SELECT * FROM authorities WHERE BINARY username = ?"
-                                            users-by-username-query="SELECT * FROM users WHERE BINARY username = ?"></security:jdbc-user-service><!--JNDI data source-->
+                                            authorities-by-username-query="SELECT username, authority FROM users WHERE BINARY username = ?"
+                                            users-by-username-query="SELECT username, password, enabled FROM users WHERE BINARY username = ?"></security:jdbc-user-service><!--JNDI data source-->
 
                 <!--Inject password encoder into auth provider-->
                 <security:password-encoder hash="bcrypt" ref="passwordEncoder"></security:password-encoder>

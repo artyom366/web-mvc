@@ -25,16 +25,21 @@ public class User {
 
     @Email
     private String email;
+
+    @NotBlank
+    @Size(min = 4, max = 25)
+    private String name;
     private boolean enabled;
     private String authority;
 
     public User() {
     }
 
-    public User(String userName, String password, String email, boolean enabled, String authority) {
+    public User(String userName, String password, String email, String name, boolean enabled, String authority) {
         this.userName = userName;
         this.password = password;
         this.email = email;
+        this.name = name;
         this.enabled = enabled;
         this.authority = authority;
     }
@@ -61,6 +66,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public boolean isEnabled() {

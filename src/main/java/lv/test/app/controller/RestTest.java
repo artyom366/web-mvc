@@ -16,6 +16,6 @@ public class RestTest {
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public User ttestRestController() {
-        return new User("testName", "testPass", "testEmail", true, "testAuthority");
+        return new User("testName", "testPass", "testEmail", "testName", true, "testAuthority");
     }
 }

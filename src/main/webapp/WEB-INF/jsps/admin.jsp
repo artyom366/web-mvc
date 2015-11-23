@@ -36,6 +36,9 @@
 
         <tr>
             <td>
+                <c:out value="${user.name}"></c:out>
+            </td>
+            <td>
                 <c:out value="${user.userName}"></c:out>
             </td>
             <td>

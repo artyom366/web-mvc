@@ -32,10 +32,10 @@
         <tr>
 
             <td>
-                <c:out value="${offer.name}" />
+                <c:out value="${offer.user.name}" />
             </td>
             <td>
-                <c:out value="${offer.email}" />
+                <c:out value="${offer.user.email}" />
             </td>
             <td>
                 <c:out value="${offer.text}" />

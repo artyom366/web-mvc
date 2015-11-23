@@ -39,11 +39,11 @@ public class UserDAO {
 		params.addValue("password", passwordEncoder.encode(user.getPassword()));
 		//params.addValue("password", user.getPassword());
 		params.addValue("email", user.getEmail());
+		params.addValue("name", user.getName());
 		params.addValue("enabled", user.isEnabled());
 		params.addValue("authority", user.getAuthority());
 
-		jdbc.update("insert into users (username, password, email, enabled) values (:username, :password, :email, :enabled)", params);
-		return jdbc.update("insert into authorities (username, authority) values (:username, :authority)", params) == 1;
+		return jdbc.update("insert into users (username, password, email, name, enabled, authority) values (:username, :password, :email, :name, :enabled, :authority )", params) == 1;
 	}
 
 	public boolean exists(String userName) {
@@ -57,6 +57,6 @@ public class UserDAO {
 
 	public List<User> getAllUsers() {
 
-		return jdbc.query("select * from users as u, authorities as a where u.username = a.username", BeanPropertyRowMapper.newInstance(User.class));
+		return jdbc.query("select * from users", BeanPropertyRowMapper.newInstance(User.class));
 	}
 }

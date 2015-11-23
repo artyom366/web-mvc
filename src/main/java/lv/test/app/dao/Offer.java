@@ -9,59 +9,35 @@ public class Offer {
 
 	private int id;
 
-	@Size(max = 100, min = 5, message = "Name size is not valid")
-	private String name;
-
-	@NotNull
-	//@Pattern(regexp = ".*\\@.*\\..*", message = "Email address is not valid")
-	@ValidEmail(min = 6, message = "Not valid")
-	private String email;
-
 	@Size(max = 255, min = 10, message = "Text size is not valid")
 	private String text;
 
+	private User user;
+
 	public Offer() {
-
+        this.user = new User();
 	}
 
-	public Offer(String name, String email, String text) {
-		this.name = name;
-		this.email = email;
-		this.text = text;
-	}
-
-
-
-	public Offer(int id, String name, String email, String text) {
-		super();
+	public Offer(int id, String text, User user) {
 		this.id = id;
-		this.name = name;
-		this.email = email;
 		this.text = text;
+		this.user = user;
 	}
 
-	public int getId() {
+    public String getUserName() {
+        return user.getUserName();
+    }
+
+    public void setUserName(String userName) {
+        this.user.setUserName(userName);
+    }
+
+    public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getText() {
@@ -72,10 +48,11 @@ public class Offer {
 		this.text = text;
 	}
 
-	@Override
-	public String toString() {
-		return "Offer [id=" + id + ", name=" + name + ", email=" + email
-				+ ", text=" + text + "]";
+	public User getUser() {
+		return user;
 	}
 
+	public void setUser(User user) {
+		this.user = user;
+	}
 }

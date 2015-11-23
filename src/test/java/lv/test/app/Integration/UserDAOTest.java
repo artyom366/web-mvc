@@ -43,10 +43,10 @@ public class UserDAOTest {
 
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
+        jdbcTemplate.execute("DELETE FROM offers");
         jdbcTemplate.execute("DELETE FROM users");
-        jdbcTemplate.execute("DELETE FROM authorities");
 
-        user = new User("testUserName", "testPassword", "test@email.lv", true, "ROLE_USER");
+        user = new User("testUserName", "testPassword", "test@email.lv", "testName", true, "ROLE_USER");
     }
 
 

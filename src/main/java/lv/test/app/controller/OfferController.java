@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -54,11 +55,13 @@ public class OfferController {
     }
 
     @RequestMapping(value = "/docreate", method = RequestMethod.POST)
-    public String doCreate(Model model, @Valid Offer offer, BindingResult result) {
+    public String doCreate(Model model, @Valid Offer offer, BindingResult result, Principal principal) {
 
         if (result.hasErrors()) {
             return "createoffer";
         }
+        String userName = principal.getName();
+        offer.getUser().setUserName(userName);
 
         offerService.create(offer);
 
