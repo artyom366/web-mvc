@@ -1,5 +1,7 @@
 package lv.test.app.dao;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
@@ -13,13 +15,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+@Transactional //bind dao to hibernate session
 @Component("userDao")
 public class UserDAO {
 
 	private NamedParameterJdbcTemplate jdbc;
 
 	@Autowired
+	private SessionFactory sessionFactory;
+
+	@Autowired
 	private PasswordEncoder passwordEncoder;
+
+    public Session session() {
+        return sessionFactory.getCurrentSession();
+    }
 
 	public UserDAO() {
 		System.out.println("--------------------------------------------------------------------------------------------Loaded DAO");
@@ -30,8 +40,8 @@ public class UserDAO {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
 
-	@Transactional
 	public boolean create(User user) {
+
 
 		//BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(user);
 		MapSqlParameterSource params = new MapSqlParameterSource();
@@ -57,6 +67,9 @@ public class UserDAO {
 
 	public List<User> getAllUsers() {
 
-		return jdbc.query("select * from users", BeanPropertyRowMapper.newInstance(User.class));
+        return session().createQuery("from User").list();
+		//return jdbc.query("select * from users", BeanPropertyRowMapper.newInstance(User.class));
+
+
 	}
 }
