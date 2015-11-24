@@ -18,8 +18,7 @@ public class Offer {
         this.user = new User();
 	}
 
-	public Offer(int id, String text, User user) {
-		this.id = id;
+	public Offer(String text, User user) {
 		this.text = text;
 		this.user = user;
 	}

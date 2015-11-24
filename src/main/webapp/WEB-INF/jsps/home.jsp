@@ -32,12 +32,20 @@
 </h2>
 
 
-<p>
-    <a href="${pageContext.request.contextPath}/offers">Show offers</a>
-</p>
-<p>
-    <a href="${pageContext.request.contextPath}/createoffer">Add a new offer</a>
-</p>
+<c:choose>
+    <c:when test="${hasOffer}">
+        <p>
+            <a href="${pageContext.request.contextPath}/createoffer">Edit current offer</a>
+        </p>
+    </c:when>
+
+    <c:otherwise>
+        <p>
+            <a href="${pageContext.request.contextPath}/createoffer">Add a new offer</a>
+        </p>
+    </c:otherwise>
+</c:choose>
+
 
 <sec:authorize access="!isAuthenticated()">
     <p><a href="<c:url value="/login"/>">Log in</a></p>
@@ -57,6 +65,35 @@
     <p><a href="<c:url value="/admin"/>">Admin</a></p>
 </sec:authorize>
 
+<table class="offers">
+    <thead>
+    <tr>
+        <td>
+            Name
+        </td>
+        <td>
+            Email
+        </td>
+        <td>
+            Offer
+        </td>
+    </tr>
+    </thead>
+    <c:forEach var="offer" items="${offers}">
+        <tr>
+
+            <td>
+                <c:out value="${offer.user.name}" />
+            </td>
+            <td>
+                <c:out value="${offer.user.email}" />
+            </td>
+            <td>
+                <c:out value="${offer.text}" />
+            </td>
+        </tr>
+    </c:forEach>
+</table>
 
 </body>
 </html>

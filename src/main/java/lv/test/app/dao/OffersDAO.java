@@ -32,33 +32,19 @@ public class OffersDAO {
 
 	public List<Offer> getOffers() {
 
-		return jdbc.query("select * from offers as o, users as u where o.username = u.username and u.enabled = true", new RowMapper<Offer>() {
+		return jdbc.query("select * from offers as o, users as u where o.username = u.username and u.enabled = true", new OfferRowMapper()); // see implementation OfferRowMapper
+	}
 
-			public Offer mapRow(ResultSet rs, int rowNum) throws SQLException {
+    public List<Offer> getOffers(String userName) {
 
-				Offer offer = new Offer();
-				User user = new User();
-
-				user.setAuthority(rs.getString("authority"));
-				user.setEmail(rs.getString("email"));
-				user.setEnabled(true);
-				user.setName(rs.getString("name"));
-				user.setUserName(rs.getString("username"));
-
-				offer.setId(rs.getInt("id"));
-				offer.setText(rs.getString("text"));
-				offer.setUser(user);
-
-				return offer;
-			}
-
-		});
+		return jdbc.query("select * from offers as o, users as u where o.username = u.username and u.enabled = true and u.username =:username",
+                new MapSqlParameterSource("username", userName), new OfferRowMapper()); // see implementation OfferRowMapper
 	}
 
 	public boolean update(Offer offer) {
 		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(offer);
 
-		return jdbc.update("update offers set text=:text, where id=:id", params) == 1;
+		return jdbc.update("update offers set text=:text where id=:id", params) == 1;
 	}
 
 	public boolean create(Offer offer) {
@@ -88,26 +74,7 @@ public class OffersDAO {
 		params.addValue("id", id);
 
 		return jdbc.queryForObject("select * from offers as o, users as u where o,username = u.username and u.enables = true and id=:id", params,
-				new RowMapper<Offer>() {
-
-					public Offer mapRow(ResultSet rs, int rowNum) throws SQLException {
-						Offer offer = new Offer();
-						User user = new User();
-
-						user.setAuthority(rs.getString("authority"));
-						user.setEmail(rs.getString("email"));
-						user.setEnabled(true);
-						user.setName(rs.getString("name"));
-						user.setUserName(rs.getString("username"));
-
-						offer.setId(rs.getInt("id"));
-						offer.setText(rs.getString("text"));
-						offer.setUser(user);
-
-						return offer;
-					}
-
-				});
+				new OfferRowMapper());
 	}
 
 }

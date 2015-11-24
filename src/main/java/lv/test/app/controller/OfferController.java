@@ -48,24 +48,52 @@ public class OfferController {
     }
 
     @RequestMapping(value = "/createoffer")
-    public String createOffer(Model model) {
+    public String createOffer(Model model, Principal principal) {
 
-        model.addAttribute("offer", new Offer());
+        Offer offer = null;
+
+        if (principal != null) {
+            String userName = principal.getName();
+
+            offer = offerService.getOffer(userName);
+        }
+
+        if (offer == null) {
+            offer = new Offer();
+        }
+
+        model.addAttribute("offer", offer);
         return "createoffer";
     }
 
     @RequestMapping(value = "/docreate", method = RequestMethod.POST)
-    public String doCreate(Model model, @Valid Offer offer, BindingResult result, Principal principal) {
+    public String doCreate(Model model,
+                           @Valid Offer offer,
+                           BindingResult result,
+                           Principal principal,
+                           @RequestParam(value = "delete", required = false) String delete) { //delete param might not present in the request
 
         if (result.hasErrors()) {
             return "createoffer";
         }
-        String userName = principal.getName();
-        offer.getUser().setUserName(userName);
 
-        offerService.create(offer);
+        if (delete == null) {
+            System.out.println("delete is null");
 
-        return "offercreated";
+            String userName = principal.getName();
+            offer.getUser().setUserName(userName);
+
+            offerService.saveOrUpdate(offer);
+            //offerService.create(offer);
+
+            return "offercreated";
+        } else {
+            System.out.println("delete is not null");
+
+            offerService.delete(offer.getId());
+        }
+
+        return "offerdeleted";
     }
 
 
