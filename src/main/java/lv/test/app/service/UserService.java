@@ -20,8 +20,8 @@ public class UserService {
     @Autowired
     private UserDAO userDAO;
 
-    public boolean create(User user) {
-        return userDAO.create(user);
+    public void create(User user) {
+        userDAO.create(user);
     }
 
 

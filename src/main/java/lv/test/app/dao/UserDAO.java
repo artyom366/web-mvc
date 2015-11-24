@@ -40,21 +40,22 @@ public class UserDAO {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
 
-	public boolean create(User user) {
+	public void create(User user) {
 
 
-		//BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(user);
-		MapSqlParameterSource params = new MapSqlParameterSource();
-		params.addValue("username", user.getUserName());
-		params.addValue("password", passwordEncoder.encode(user.getPassword()));
-		//params.addValue("password", user.getPassword());
-		params.addValue("email", user.getEmail());
-		params.addValue("name", user.getName());
-		params.addValue("enabled", user.isEnabled());
-		params.addValue("authority", user.getAuthority());
+//		//BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(user);
+//		MapSqlParameterSource params = new MapSqlParameterSource();
+//		params.addValue("username", user.getUserName());
+//		params.addValue("password", passwordEncoder.encode(user.getPassword()));
+//		//params.addValue("password", user.getPassword());
+//		params.addValue("email", user.getEmail());
+//		params.addValue("name", user.getName());
+//		params.addValue("enabled", user.isEnabled());
+//		params.addValue("authority", user.getAuthority());
+//		return jdbc.update("insert into users (username, password, email, name, enabled, authority) values (:username, :password, :email, :name, :enabled, :authority )", params) == 1;
 
-		return jdbc.update("insert into users (username, password, email, name, enabled, authority) values (:username, :password, :email, :name, :enabled, :authority )", params) == 1;
-	}
+        session().save(user);
+    }
 
 	public boolean exists(String userName) {
 

@@ -68,7 +68,7 @@ public class OfferDAOTest {
     @Test
     public void createOffer() {
 
-        assertTrue(userDAO.create(user));
+        userDAO.create(user);
 
         for (Offer offer : offers) {
             assertTrue(offersDAO.create(offer));
