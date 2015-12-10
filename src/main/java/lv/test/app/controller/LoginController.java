@@ -1,5 +1,6 @@
 package lv.test.app.controller;
 
+import lv.test.app.dao.FormValidationGroup;
 import lv.test.app.dao.Offer;
 import lv.test.app.dao.User;
 import lv.test.app.service.UserService;
@@ -8,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -52,7 +54,7 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/createaccount", method = RequestMethod.POST)
-    public String doCreateAccount(@Valid User user, BindingResult result) {
+    public String doCreateAccount(@Validated(FormValidationGroup.class) User user, BindingResult result) {
 
         if (result.hasErrors()) {
             return "newacc";

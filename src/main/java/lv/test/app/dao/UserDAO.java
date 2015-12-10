@@ -54,6 +54,9 @@ public class UserDAO {
 //		params.addValue("authority", user.getAuthority());
 //		return jdbc.update("insert into users (username, password, email, name, enabled, authority) values (:username, :password, :email, :name, :enabled, :authority )", params) == 1;
 
+		//encode the password
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+
         session().save(user);
     }
 
