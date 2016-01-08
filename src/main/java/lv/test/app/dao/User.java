@@ -20,23 +20,23 @@ import java.io.Serializable;
 @Table(name = "users")
 public class User {
 
-    @NotBlank(groups = {PersistanceValidationGroup.class, FormValidationGroup.class})
-    @Size(min = 8, max = 15, groups = {PersistanceValidationGroup.class, FormValidationGroup.class})
-    @Pattern(regexp = "^\\w{8,}$", groups = {PersistanceValidationGroup.class, FormValidationGroup.class})
+    @NotBlank(groups = {PersistenceValidationGroup.class, FormValidationGroup.class})
+    @Size(min = 8, max = 15, groups = {PersistenceValidationGroup.class, FormValidationGroup.class})
+    @Pattern(regexp = "^\\w{8,}$", groups = {PersistenceValidationGroup.class, FormValidationGroup.class})
     @Id
     @Column(name = "username")
     private String userName;
 
-    @NotBlank(groups = {PersistanceValidationGroup.class, FormValidationGroup.class})
-    @Pattern(regexp = "^\\S+$", groups = {PersistanceValidationGroup.class, FormValidationGroup.class})
+    @NotBlank(groups = {PersistenceValidationGroup.class, FormValidationGroup.class})
+    @Pattern(regexp = "^\\S+$", groups = {PersistenceValidationGroup.class, FormValidationGroup.class})
     @Size(min = 8, max = 15, groups = FormValidationGroup.class)
     private String password;
 
     @Email
     private String email;
 
-    @NotBlank(groups = {PersistanceValidationGroup.class, FormValidationGroup.class})
-    @Size(min = 4, max = 25, groups = {PersistanceValidationGroup.class, FormValidationGroup.class})
+    @NotBlank(groups = {PersistenceValidationGroup.class, FormValidationGroup.class})
+    @Size(min = 4, max = 25, groups = {PersistenceValidationGroup.class, FormValidationGroup.class})
     private String name;
     private boolean enabled;
     private String authority;
